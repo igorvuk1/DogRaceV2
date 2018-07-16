@@ -12,13 +12,22 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+//        let dog1 = Dog()
+//        let dog2 = Dog()
+//        let dog3 = Dog()
+//        let dog4 = Dog()
+//        let dog5 = Dog()
+//        let dog6 = Dog()
+        //print("\(testDog6.number), \(testDog6.odds), \(testDog6.position)")
+
+        
+
+
+        
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
 
 }
