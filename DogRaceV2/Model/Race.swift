@@ -12,22 +12,63 @@ import RealmSwift
 class Race: Object {
     
     @objc dynamic var id : Int = 0
+    var dogs = List<Dog>()
+ 
+}
+
+//MARK: - Calculate IN and OUT centroid for list of races
+
+func calculateCentroid(races : [Race]) -> (Float, Float) {
+    //Read data from Realm
+    //Code here
+    var inThree : Float = 0.0
+    var outThree : Float = 0.0
+
+    for race in races {
+        for dog in race.dogs {
+            if dog.position <= 3 {
+                inThree += dog.odds
+            } else {
+                outThree += dog.odds
+            }
+        }
+    }
     
-    @objc dynamic var dog1 : Dog? = nil
-    @objc dynamic var dog2 : Dog? = nil
-    @objc dynamic var dog3 : Dog? = nil
-    @objc dynamic var dog4 : Dog? = nil
-    @objc dynamic var dog5 : Dog? = nil
-    @objc dynamic var dog6 : Dog? = nil
+    inThree /= (Float(races.count) * 3.0)
+    outThree /= (Float(races.count) * 3.0)
+    return (inThree, outThree)
+}
+
+//MARK: - Analys race method according positions in order to centroids
+
+func analys(race:Race, inCentroid: Float, outCentroid: Float) -> [[Int]] {
+    //Calculate distance between INCentroid and kvota, on the left are positive, on the right are negative
+    var inDistance = [Dog]()
+    var outDistance = [Dog]()
     
-//    init(dog1: Dog, dog2: Dog, dog3: Dog, dog4: Dog, dog5: Dog, dog6: Dog) {
-//
-//        self.dog1 = dog1
-//        self.dog2 = dog2
-//        self.dog3 = dog3
-//        self.dog4 = dog4
-//        self.dog5 = dog5
-//        self.dog6 = dog6
-//    }
+    var finalResultIn = [Int]()
+    var finalResultOut = [Int]()
+    
+    for dog in race.dogs {
+        dog.centroidInDist = abs(inCentroid - dog.odds)
+        dog.centroidOutDist = abs(outCentroid - dog.odds)
+        inDistance.append(dog)
+        outDistance.append(dog)
+    }
+    
+    inDistance = inDistance.sorted(by: {$0.centroidInDist < $1.centroidInDist})
+    outDistance = outDistance.sorted(by: {$0.centroidOutDist < $1.centroidOutDist})
+    
+    for dog in inDistance {
+        finalResultIn.append(dog.number)
+    }
+    
+    for dog in outDistance {
+        finalResultOut.append(dog.number)
+    }
+
+    return [finalResultIn, finalResultOut]
     
 }
+
+
