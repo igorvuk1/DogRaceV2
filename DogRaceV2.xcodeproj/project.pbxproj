@@ -15,6 +15,7 @@
 		AFA0138120FD2089009DFA9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFA0138020FD2089009DFA9F /* Main.storyboard */; };
 		AFA0138820FD223A009DFA9F /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA0138720FD223A009DFA9F /* Dog.swift */; };
 		AFA0138A20FD2A7C009DFA9F /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA0138920FD2A7C009DFA9F /* Race.swift */; };
+		AFD0E7F520FFC19800805E56 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD0E7F420FFC19800805E56 /* SecondViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		AFA0138020FD2089009DFA9F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AFA0138720FD223A009DFA9F /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
 		AFA0138920FD2A7C009DFA9F /* Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
+		AFD0E7F420FFC19800805E56 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		E40486A0BF372D94CD34404F /* Pods-DogRaceV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogRaceV2.release.xcconfig"; path = "Pods/Target Support Files/Pods-DogRaceV2/Pods-DogRaceV2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,8 +97,8 @@
 		AFA0138420FD2156009DFA9F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AFA0137720FD1FF9009DFA9F /* LaunchScreen.storyboard */,
 				AFA0138020FD2089009DFA9F /* Main.storyboard */,
+				AFA0137720FD1FF9009DFA9F /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				AFA0137020FD1FF5009DFA9F /* ViewController.swift */,
+				AFD0E7F420FFC19800805E56 /* SecondViewController.swift */,
 			);
 			path = Controll;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				AFA0138A20FD2A7C009DFA9F /* Race.swift in Sources */,
 				AFA0137120FD1FF5009DFA9F /* ViewController.swift in Sources */,
 				AFA0136F20FD1FF5009DFA9F /* AppDelegate.swift in Sources */,
+				AFD0E7F520FFC19800805E56 /* SecondViewController.swift in Sources */,
 				AFA0138820FD223A009DFA9F /* Dog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

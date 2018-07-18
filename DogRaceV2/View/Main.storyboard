@@ -13,13 +13,13 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DogRaceV2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DogRaceV2" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="rvv-Io-iVA">
-                                <rect key="frame" x="77.5" y="88" width="220" height="470"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="8D5-bO-thf">
+                                <rect key="frame" x="30" y="98.5" width="295" height="470"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="l7d-MC-JsP">
                                         <rect key="frame" x="0.0" y="0.0" width="70" height="470"/>
@@ -44,43 +44,43 @@
                                             </imageView>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="IDL-Gf-sZd">
-                                        <rect key="frame" x="120" y="14" width="100" height="442"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="088-GN-qXW">
+                                        <rect key="frame" x="82" y="9" width="213" height="452"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EYV-ba-vdE">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
+                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="x2p-ma-yAG" userLabel="Text Field 1">
+                                                <rect key="frame" x="0.0" y="0.0" width="213" height="52"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0VH-Ht-j0r">
-                                                <rect key="frame" x="0.0" y="82" width="100" height="32"/>
+                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="s7R-I8-399" userLabel="Text Field 2">
+                                                <rect key="frame" x="0.0" y="80" width="213" height="52"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQf-Nx-45b">
-                                                <rect key="frame" x="0.0" y="164" width="100" height="32"/>
+                                            <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uZE-dw-hW3" userLabel="Text Field 3">
+                                                <rect key="frame" x="0.0" y="160" width="213" height="52"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RFw-pm-M7J">
-                                                <rect key="frame" x="0.0" y="246" width="100" height="32"/>
+                                            <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Csa-Wa-QqK" userLabel="Text Field 4">
+                                                <rect key="frame" x="0.0" y="240" width="213" height="52"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x2p-ma-yAG">
-                                                <rect key="frame" x="0.0" y="328" width="100" height="32"/>
+                                            <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2tv-Ah-cND" userLabel="Text Field 5">
+                                                <rect key="frame" x="0.0" y="320" width="213" height="52"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="                  " borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bsu-xj-oRW">
-                                                <rect key="frame" x="0.0" y="410" width="100" height="32"/>
+                                            <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wJU-IO-ygZ" userLabel="Text Field 6">
+                                                <rect key="frame" x="0.0" y="400" width="213" height="52"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                         </subviews>
@@ -98,26 +98,52 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="assistPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X4z-hG-9zk"/>
+                                    <segue destination="Eu4-Sx-MI9" kind="show" id="FmG-vb-Kcv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rvv-Io-iVA" secondAttribute="trailing" constant="77.5" id="6Ei-9o-nUJ"/>
-                            <constraint firstItem="Fuk-rR-yVy" firstAttribute="top" secondItem="rvv-Io-iVA" secondAttribute="bottom" constant="29" id="DrL-Mh-btI"/>
-                            <constraint firstItem="Fuk-rR-yVy" firstAttribute="top" secondItem="rvv-Io-iVA" secondAttribute="bottom" constant="29" id="EvX-cH-js5"/>
+                            <constraint firstItem="8D5-bO-thf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="20y-V7-wRG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Fuk-rR-yVy" secondAttribute="trailing" constant="78" id="Jga-1D-o3p"/>
-                            <constraint firstItem="rvv-Io-iVA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="77.5" id="V0c-YJ-xWb"/>
-                            <constraint firstItem="rvv-Io-iVA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="avw-Ab-QhG"/>
+                            <constraint firstItem="8D5-bO-thf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="L2G-Ca-7lm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8D5-bO-thf" secondAttribute="trailing" constant="50" id="amb-uf-JCa"/>
                             <constraint firstItem="Fuk-rR-yVy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="77" id="hy7-zg-Tmk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Fuk-rR-yVy" secondAttribute="bottom" constant="27" id="qU6-j7-xDI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="4Nt-MB-h11"/>
+                    <connections>
+                        <outletCollection property="inputOdds" destination="x2p-ma-yAG" collectionClass="NSMutableArray" id="URq-38-KTv"/>
+                        <outletCollection property="inputOdds" destination="s7R-I8-399" collectionClass="NSMutableArray" id="TAk-N8-L2u"/>
+                        <outletCollection property="inputOdds" destination="uZE-dw-hW3" collectionClass="NSMutableArray" id="QyQ-5b-UTI"/>
+                        <outletCollection property="inputOdds" destination="Csa-Wa-QqK" collectionClass="NSMutableArray" id="cfj-X8-mSh"/>
+                        <outletCollection property="inputOdds" destination="2tv-Ah-cND" collectionClass="NSMutableArray" id="Rhc-zN-mTW"/>
+                        <outletCollection property="inputOdds" destination="wJU-IO-ygZ" collectionClass="NSMutableArray" id="Fdd-aP-eww"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="489.5" y="133.5"/>
+            <point key="canvasLocation" x="488.80000000000001" y="132.68365817091455"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="L7K-j4-uQn">
+            <objects>
+                <viewController id="Eu4-Sx-MI9" customClass="ViewController" customModule="Controll" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zbQ-I9-6jU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="VCv-KS-7q8"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bbS-xp-73P"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gik-SP-gTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1212" y="133"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8ih-o3-2gr">

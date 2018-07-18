@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     let realm = try! Realm()
     var races : Results<Race>? = nil
     
+    @IBOutlet var inputOdds: [UITextField] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -120,6 +123,58 @@ class ViewController: UIViewController {
             print("Error during deleting real : \(error)")
         }
     }
+    
+    
+    @IBAction func assistPressed(_ sender: UIButton) {
+        
+        let race = Race()
+        
+        let dog1 = Dog()
+        let dog2 = Dog()
+        let dog3 = Dog()
+        let dog4 = Dog()
+        let dog5 = Dog()
+        let dog6 = Dog()
+        
+        race.id = 777
+        race.dogs.append(dog1)
+        race.dogs.append(dog2)
+        race.dogs.append(dog3)
+        race.dogs.append(dog4)
+        race.dogs.append(dog5)
+        race.dogs.append(dog6)
+        
+        // Assign odds from input fields
+        for index in 0...inputOdds.count - 1 {
+            if let odd = inputOdds[index].text {
+                race.dogs[index].odds = Float(odd)!
+            } else {
+                //Throw UIAlarm da nisu unete sve kvote
+            }
+        }
 
+        dog1.number = 1
+        dog1.position = 6
+        
+        dog2.number = 2
+        dog2.position = 5
+        
+        dog3.number = 3
+        dog3.position = 4
+        
+        dog4.number = 4
+        dog4.position = 3
+        
+        dog5.number = 5
+        dog5.position = 2
+        
+        dog6.number = 6
+        dog6.position = 1
+        
+        save(race: race)
+        
+        //performSegue(withIdentifier: "resultsSegue", sender: self)
+    }
+    
 }
 
