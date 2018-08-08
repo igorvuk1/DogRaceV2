@@ -7,174 +7,52 @@
 //
 
 import UIKit
-import RealmSwift
 
 class ViewController: UIViewController {
 
-    let realm = try! Realm()
-    var races : Results<Race>? = nil
     
     @IBOutlet var inputOdds: [UITextField] = []
+    var inputOddsFloat = [Float]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(Realm.Configuration.defaultConfiguration.fileURL)
-        
-        let testRace1 = Race()
-        let testRace2 = Race()
-        
-        let dog1 = Dog()
-        let dog2 = Dog()
-        let dog3 = Dog()
-        let dog4 = Dog()
-        let dog5 = Dog()
-        let dog6 = Dog()
-        
-        
-        dog1.number = 1
-        dog1.odds = 4.8
-        dog1.position = 6
-        
-        dog2.number = 2
-        dog2.odds = 5.95
-        dog2.position = 5
-        
-        dog3.number = 3
-        dog3.odds = 5.55
-        dog3.position = 4
-        
-        dog4.number = 4
-        dog4.odds = 30.0
-        dog4.position = 3
-        
-        dog5.number = 5
-        dog5.odds = 8.8
-        dog5.position = 2
-        
-        dog6.number = 6
-        dog6.odds = 3.00
-        dog6.position = 1
-        
-        testRace1.id = 777
-        testRace1.dogs.append(dog1)
-        testRace1.dogs.append(dog2)
-        testRace1.dogs.append(dog3)
-        testRace1.dogs.append(dog4)
-        testRace1.dogs.append(dog5)
-        testRace1.dogs.append(dog6)
-        
-        testRace2.id = 999
-        testRace2.dogs.append(dog1)
-        testRace2.dogs.append(dog2)
-        testRace2.dogs.append(dog3)
-        testRace2.dogs.append(dog4)
-        testRace2.dogs.append(dog5)
-        testRace2.dogs.append(dog6)
-        
-        let races = [testRace1,testRace2]
-        
-        let result = calculateCentroid(races: races)
-        print(result)
-        let analysed = analys(race: testRace1, inCentroid: result.0, outCentroid: result.1)
-        print(analysed)
-        
-                do {
-//                    try realm.write {
-//                        realm.add(testRace1)
-//                    }
-                } catch {
-                    print("Error during initialization real : \(error)")
-                }
-        //load()
-        
-    }
-    
-    //MARK: - Realm example Methods
-    
-    //SAVE and UPDATE Methods
-    
-    func save(race: Race) {
-        do {
-            try realm.write {
-                realm.add(race)
-            }
-        } catch {
-            print("Error during saving data : \(error)")
-        }
-    }
-    
-    //LOAD Method
-    
-    func load() {
-        races = realm.objects(Race.self)
-        print(races)
-    }
-    
-    //DELETE Method
 
-    func delete(race: Race) {
-        do {
-            try realm.write {
-                realm.delete(race)
-            }
-        } catch {
-            print("Error during deleting real : \(error)")
-        }
     }
     
-    
-    @IBAction func assistPressed(_ sender: UIButton) {
-        
-        let race = Race()
-        
-        let dog1 = Dog()
-        let dog2 = Dog()
-        let dog3 = Dog()
-        let dog4 = Dog()
-        let dog5 = Dog()
-        let dog6 = Dog()
-        
-        race.id = 777
-        race.dogs.append(dog1)
-        race.dogs.append(dog2)
-        race.dogs.append(dog3)
-        race.dogs.append(dog4)
-        race.dogs.append(dog5)
-        race.dogs.append(dog6)
-        
-        // Assign odds from input fields
-        for index in 0...inputOdds.count - 1 {
+
+    @IBAction func assistButtonPressed(_ sender: UIButton) {
+        //Assign odds from input fields
+
+        for index in 0..<inputOdds.count {
             if let odd = inputOdds[index].text {
-                race.dogs[index].odds = Float(odd)!
-            } else {
-                //Throw UIAlarm da nisu unete sve kvote
+                inputOddsFloat.append(Float(odd) ?? 0)
             }
         }
-
-        dog1.number = 1
-        dog1.position = 6
         
-        dog2.number = 2
-        dog2.position = 5
+        if inputOddsFloat.contains(0.0) {
+            //Throw UIAlarm da nisu unete sve kvote!!!
+        } else {
+            // Poslati Float niz u SecondViewControler, proveriti show segue da li je potreban ili je dovoljna funkcija prepare(...)
+        }
         
-        dog3.number = 3
-        dog3.position = 4
-        
-        dog4.number = 4
-        dog4.position = 3
-        
-        dog5.number = 5
-        dog5.position = 2
-        
-        dog6.number = 6
-        dog6.position = 1
-        
-        save(race: race)
-        
-        //performSegue(withIdentifier: "resultsSegue", sender: self)
+        print(inputOddsFloat)
     }
+    
+ 
+        
+    //MARK: - Send data to SecondviewController via Segue
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "assistSegue" {
+//            let destinationVC = segue.destination as! SecondViewController
+//            //print(dog1.odds)
+//            destinationVC.textTest = "testiranje" //String(dog1.odds)
+//            print("oooooooooooooo")
+//        }
+//    }
+
+
     
 }
 

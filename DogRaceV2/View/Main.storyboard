@@ -99,8 +99,8 @@
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="assistPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X4z-hG-9zk"/>
-                                    <segue destination="Eu4-Sx-MI9" kind="show" id="FmG-vb-Kcv"/>
+                                    <action selector="assistButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rG3-fQ-7ni"/>
+                                    <segue destination="Eu4-Sx-MI9" kind="show" identifier="assistSegue" id="FmG-vb-Kcv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -129,17 +129,51 @@
             </objects>
             <point key="canvasLocation" x="488.80000000000001" y="132.68365817091455"/>
         </scene>
-        <!--View Controller-->
+        <!--Second View Controller-->
         <scene sceneID="L7K-j4-uQn">
             <objects>
-                <viewController id="Eu4-Sx-MI9" customClass="ViewController" customModule="Controll" sceneMemberID="viewController">
+                <viewController id="Eu4-Sx-MI9" customClass="SecondViewController" customModule="DogRaceV2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zbQ-I9-6jU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="6xh-DC-4zc">
+                                <rect key="frame" x="68" y="170" width="238" height="70"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qQc-SD-d2d">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Xg-H3-C0a">
+                                        <rect key="frame" x="84" y="0.0" width="70" height="70"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EgA-sV-lhl">
+                                        <rect key="frame" x="168" y="0.0" width="70" height="70"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="504-Ov-B1h">
+                                <rect key="frame" x="157" y="323" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6xh-DC-4zc" firstAttribute="top" secondItem="VCv-KS-7q8" secondAttribute="top" constant="106" id="3R6-nD-auA"/>
+                            <constraint firstItem="VCv-KS-7q8" firstAttribute="bottom" secondItem="6xh-DC-4zc" secondAttribute="bottom" constant="427" id="G56-Jf-frb"/>
+                            <constraint firstItem="6xh-DC-4zc" firstAttribute="leading" secondItem="VCv-KS-7q8" secondAttribute="leading" constant="68" id="Xkw-gl-ZUF"/>
+                            <constraint firstItem="VCv-KS-7q8" firstAttribute="trailing" secondItem="6xh-DC-4zc" secondAttribute="trailing" constant="69" id="eqf-si-R2q"/>
+                            <constraint firstItem="6xh-DC-4zc" firstAttribute="leading" secondItem="VCv-KS-7q8" secondAttribute="leading" constant="68" id="hrs-Ts-pce"/>
+                            <constraint firstItem="VCv-KS-7q8" firstAttribute="trailing" secondItem="6xh-DC-4zc" secondAttribute="trailing" constant="69" id="jem-Q6-2mS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="VCv-KS-7q8"/>
                     </view>
                     <navigationItem key="navigationItem" id="bbS-xp-73P"/>
+                    <connections>
+                        <outlet property="odds1" destination="504-Ov-B1h" id="8Z6-BK-RYX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gik-SP-gTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
