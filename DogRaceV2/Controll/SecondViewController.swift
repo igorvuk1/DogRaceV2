@@ -179,15 +179,15 @@ class SecondViewController: UIViewController {
         }
         print("---------------------------")
         print(greenOdds, orangeOdds, redOdds)
-        if (greenOdds == 4 && orangeOdds == 1 && redOdds == 1) || (greenOdds == 3 && orangeOdds == 2 && redOdds == 1) {
+        //if (greenOdds == 4 && orangeOdds == 1 && redOdds == 1) || (greenOdds == 3 && orangeOdds == 2 && redOdds == 1) {
             print("PREDICT")
             let dogsSortedByOdds = sortedByOdds(race: race)
-            print(dogsSortedByOdds)
+            //print(dogsSortedByOdds)
             predictRace(dogs: dogsSortedByOdds)
             
-        } else {
-            noAdviceLabel.text = "Sorry, no advice."
-        }
+        //} else {
+            //noAdviceLabel.text = "Sorry, no advice."
+        //}
         
     }
     
@@ -208,27 +208,69 @@ class SecondViewController: UIViewController {
         var secondInThree = 0
         var thirdInThree = 0
         
-        firstInThree = dogs[0].number
-        // Here call lookUpTable
-        var lookUpPosition1 = lookUpTable(lookTableFor: firstInThree)
-        print("INDEX OF MAX \(lookUpPosition1)")
-        print("***********************************")
+        var dogSets : Set<Dog> = [dogs[0]]
+        var arrayOfSets : [Set<Dog>] = []
+        var numberOfDogsFromSet : [Dog] = []
         
-        for index in 1...3 { // compare with second, third and fourth position (first 4 dogs in array)
-            if lookUpPosition1 == dogs[index].number {
-                secondInThree = dogs[index].number
+        //Cretae sets with similar odds
+        
+        for index in 1...5 {
+            let difference  = dogs[index].odds - dogs[index - 1].odds
+            
+            if difference < 1.0 {
+                if !dogSets.contains(dogs[index]){
+                    dogSets.insert(dogs[index])
+                }
+                if !dogSets.contains(dogs[index - 1]) {
+                    dogSets.insert(dogs[index - 1])
+                }
+            } else {
+                arrayOfSets.append(dogSets)
+                dogSets.removeAll()
+                dogSets.insert(dogs[index])
             }
         }
         
-        if secondInThree == 0 {
-            //var lookUpPosition2 = lookUpTable(lookTableFor: <#T##Int#>)
+        arrayOfSets.append(dogSets)
+        // Take from evry set candidates, divade number of set elemts with 2 and round to upper number
+        for var set in arrayOfSets {
+            let dogsFromSets = Int((Float(set.count) / 2.0).rounded(.up))
+            //sortirai set po kvotama
+            for _ in 0..<dogsFromSets {
+                if let candidate = set.first {
+                    numberOfDogsFromSet.append(candidate)
+                    set.remove(candidate)
+                }
+            }
         }
+        print(numberOfDogsFromSet)
         
-        thirdInThree = lookUpTable(lookTableFor: secondInThree)
+        firstInThree = numberOfDogsFromSet[0].number
+        secondInThree = numberOfDogsFromSet[1].number
+        thirdInThree = numberOfDogsFromSet[2].number
         
-        if thirdInThree == firstInThree {
-          //  thirdInThree = kako naci vrednost niza koja je predzadnja po velicini, odmah pre max() vrednosti
-        }
+        //print(arrayOfSets.count)
+//        firstInThree = dogs[0].number
+//        // Here call lookUpTable
+//        var lookUpPosition1 = lookUpTable(lookTableFor: firstInThree)
+//        print("INDEX OF MAX \(lookUpPosition1)")
+//        print("***********************************")
+//
+//        for index in 1...3 { // compare with second, third and fourth position (first 4 dogs in array)
+//            if lookUpPosition1 == dogs[index].number {
+//                secondInThree = dogs[index].number
+//            }
+//        }
+//
+//        if secondInThree == 0 {
+//            //var lookUpPosition2 = lookUpTable(lookTableFor: <#T##Int#>)
+//        }
+//
+//        thirdInThree = lookUpTable(lookTableFor: secondInThree)
+//
+//        if thirdInThree == firstInThree {
+//          //  thirdInThree = kako naci vrednost niza koja je predzadnja po velicini, odmah pre max() vrednosti
+//        }
         
         firstInThreeImage.image = UIImage(named: "\(firstInThree).jpg")
         secondInThreeImage.image = UIImage(named: "\(secondInThree).jpg")
@@ -239,21 +281,21 @@ class SecondViewController: UIViewController {
     
     //MARK: - Look up Table method
     
-    func lookUpTable(lookTableFor dogInThree : Int) -> Int {
-
-        var lookUpTable = [[0, 14, 26, 22, 20, 26], [14, 0, 14, 22, 25, 15], [26, 14, 0, 19, 23, 23], [22, 22, 19, 0, 22, 24], [20, 25, 23, 22, 0, 23], [26, 15, 23, 24, 23, 0]]
-
-        let positionIndex = dogInThree - 1
-        var lookUpPosition = (lookUpTable[positionIndex].index(of: lookUpTable[positionIndex].max()!) as! Int) + 1
-        
-        for posArray in lookUpTable {
-            //lookUpTable[posArray][lookUpPosition - 1] = 0
-            print(posArray[lookUpPosition - 1])
-        }
-        print("//////////////////////////")
-        print(lookUpTable)
-        return lookUpPosition
-        
-    }
+//    func lookUpTable(lookTableFor dogInThree : Int) -> Int {
+//
+//        var lookUpTable = [[0, 14, 26, 22, 20, 26], [14, 0, 14, 22, 25, 15], [26, 14, 0, 19, 23, 23], [22, 22, 19, 0, 22, 24], [20, 25, 23, 22, 0, 23], [26, 15, 23, 24, 23, 0]]
+//
+//        let positionIndex = dogInThree - 1
+//        var lookUpPosition = (lookUpTable[positionIndex].index(of: lookUpTable[positionIndex].max()!) as! Int) + 1
+//
+//        for posArray in lookUpTable {
+//            //lookUpTable[posArray][lookUpPosition - 1] = 0
+//            print(posArray[lookUpPosition - 1])
+//        }
+//        print("//////////////////////////")
+//        print(lookUpTable)
+//        return lookUpPosition
+//
+//    }
     
 }
