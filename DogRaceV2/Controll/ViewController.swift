@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CanRecive {
+
+
 
     
     @IBOutlet var inputOdds: [UITextField] = []
@@ -16,11 +18,14 @@ class ViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-
+        super.viewDidLoad()
+        print("First")
+            
+        
     }
     
+
 
     @IBAction func assistButtonPressed(_ sender: UIButton) {
         //Assign odds from input fields
@@ -32,27 +37,38 @@ class ViewController: UIViewController {
         }
         
         if inputOddsFloat.contains(0.0) {
-            //Throw UIAlarm da nisu unete sve kvote!!!
-        } else {
-            // Poslati Float niz u SecondViewControler, proveriti show segue da li je potreban ili je dovoljna funkcija prepare(...)
+            
+            //Throw UIAlert if some odds missing!!!
+            let alert = UIAlertController(title: "Missing Odds", message: "Please enter all odds!", preferredStyle: .alert)
+            let enterAllOddsAction = UIAlertAction(title: "Re-Enter", style: .cancel) { (UIAlertAction) in
+                self.inputOddsFloat = []
+            }
+            alert.addAction(enterAllOddsAction)
+            present(alert, animated: true, completion: nil)
+            
+            
         }
         
         print(inputOddsFloat)
     }
     
- 
-        
     //MARK: - Send data to SecondviewController via Segue
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "assistSegue" {
-//            let destinationVC = segue.destination as! SecondViewController
-//            //print(dog1.odds)
-//            destinationVC.textTest = "testiranje" //String(dog1.odds)
-//            print("oooooooooooooo")
-//        }
-//    }
-
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "assistSegue" {
+            let destinationVC = segue.destination as! SecondViewController
+            destinationVC.inputOdds = inputOddsFloat
+            destinationVC.delegate = self
+        }
+    }
     
+    //MARK: - CanRecive protocol method, remove old data
+    func enterNewRace() {
+        
+        for index in 0..<inputOdds.count {
+            inputOdds[index].text = ""
+        }
+        
+        inputOddsFloat = []
+    }
 }
 

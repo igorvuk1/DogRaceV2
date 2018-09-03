@@ -71,4 +71,13 @@ func analys(race:Race, inCentroid: Float, outCentroid: Float) -> [[Int]] {
     
 }
 
+//MARK: - Sort race by odds
+func sortedByOdds(race: Race) -> [Dog] {
+    
+    var sortedRace = [Dog]()
+    sortedRace = race.dogs.sorted(by: {$0.odds < $1.odds})
+    return sortedRace
+    
+}
+
 

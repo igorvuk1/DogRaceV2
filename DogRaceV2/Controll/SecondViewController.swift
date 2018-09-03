@@ -9,20 +9,33 @@
 import UIKit
 import RealmSwift
 
+protocol CanRecive {
+    func enterNewRace()
+}
+
 class SecondViewController: UIViewController {
 
+    var delegate : CanRecive?
     let realm = try! Realm()
     var races : Results<Race>? = nil
     var inputOdds = [Float]()
+    let lookUpTable = [[0, 14, 26, 22, 20, 26], [14, 0, 14, 22, 25, 15], [26, 14, 0, 19, 23, 23], [22, 22, 19, 0, 22, 24], [20, 25, 23, 22, 0, 23], [26, 15, 23, 24, 23, 0]]
     
-    @IBOutlet weak var odds1: UILabel!
-    var textTest = ""
-    
+    //Labels outlets
+    @IBOutlet weak var raceIdLabel: UILabel!
+    @IBOutlet weak var noAdviceLabel: UILabel!
+    //Image outlets
+    @IBOutlet weak var firstInThreeImage: UIImageView!
+    @IBOutlet weak var secondInThreeImage: UIImageView!
+    @IBOutlet weak var thirdInThreeImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Second")
-        print(Realm.Configuration.defaultConfiguration.fileURL)
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        //self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(addTapped))
+        print("Aaaaaaaaaaa \(inputOdds)")
+        //print(Realm.Configuration.defaultConfiguration.fileURL)
         
         //MARK: - Test calculateCentroid and analys methods
         
@@ -80,15 +93,18 @@ class SecondViewController: UIViewController {
         let racesArray = [testRace1,testRace2]
         
         let result = calculateCentroid(races: racesArray)
-        print(result)
+        //print(result)
         let analysed = analys(race: testRace1, inCentroid: result.0, outCentroid: result.1)
-        print(analysed)
+        //print(analysed)
         
         ///////////////////////////////////////////////////
-        //createRace()
+        let currentRace = createRace()
+        raceType(race: currentRace)
         //load()
-        odds1.text = textTest
+        
     }
+    
+
 
     //MARK: - Realm example Methods
     
@@ -123,53 +139,121 @@ class SecondViewController: UIViewController {
         }
     }
     
-    func createRace(){
+    //MARK: - Create Race method
+    
+    func createRace() -> Race{
         let race = Race()
+        //Generate random race id (NOT UNIQUE!)
+        race.id = Int(arc4random_uniform(UInt32(365000)))
+        raceIdLabel.text = String(race.id)
+
+        //Append odds and number to dogs
+        for index in 0...5 {
+            let dog = Dog()
+            
+            dog.number = index + 1
+            dog.odds = inputOdds[index]
+            race.dogs.append(dog)
+        }
+        print(race.dogs)
         
-        let dog1 = Dog()
-        let dog2 = Dog()
-        let dog3 = Dog()
-        let dog4 = Dog()
-        let dog5 = Dog()
-        let dog6 = Dog()
+//        save(race: race)
+        return race
+    }
+    
+    //MARK: - Check Race type method
+    
+    func raceType(race: Race) {
+        var greenOdds : Int = 0
+        var orangeOdds : Int = 0
+        var redOdds : Int = 0
         
-        race.id = 333
-        race.dogs.append(dog1)
-        race.dogs.append(dog2)
-        race.dogs.append(dog3)
-        race.dogs.append(dog4)
-        race.dogs.append(dog5)
-        race.dogs.append(dog6)
-        
-        //TODO: - Assign odds from input fields
-        //            for index in 0...inputOdds.count - 1 {
-        //                if let odd = inputOdds[index].text {
-        //                    race.dogs[index].odds = Float(odd)!
-        //                } else {
-        //                    //Throw UIAlarm da nisu unete sve kvote
-        //                }
-        //            }
-        
-        dog1.number = 1
-        dog1.position = 6
-        
-        dog2.number = 2
-        dog2.position = 5
-        
-        dog3.number = 3
-        dog3.position = 4
-        
-        dog4.number = 4
-        dog4.position = 3
-        
-        dog5.number = 5
-        dog5.position = 2
-        
-        dog6.number = 6
-        dog6.position = 1
-        
-        save(race: race)
+        for dog in race.dogs {
+            if dog.odds <= 7.0 {
+                greenOdds += 1
+            } else if dog.odds > 7 && dog.odds <= 10 {
+                orangeOdds += 1
+            } else {
+                redOdds += 1
+            }
+        }
+        print("---------------------------")
+        print(greenOdds, orangeOdds, redOdds)
+        if (greenOdds == 4 && orangeOdds == 1 && redOdds == 1) || (greenOdds == 3 && orangeOdds == 2 && redOdds == 1) {
+            print("PREDICT")
+            let dogsSortedByOdds = sortedByOdds(race: race)
+            print(dogsSortedByOdds)
+            predictRace(dogs: dogsSortedByOdds)
+            
+        } else {
+            noAdviceLabel.text = "Sorry, no advice."
+        }
         
     }
+    
+    //MARK: - DONE Button Pressed
+    
+    @IBAction func donePressed(_ sender: UIButton) {
+        delegate?.enterNewRace()
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+   //MARK: - Predict race result method
+    
+    func predictRace(dogs: [Dog]) {
+        // uzeti prva 4 i zatim na osnovu tabele iz excela po pozicijama izracunati biase, za 321 slucaj videti kolika je razlika izmedju 3 i 4 pa na osnovu toga uzrti 4 u razmatranje ili ne.
+        
+        
+        var firstInThree = 0
+        var secondInThree = 0
+        var thirdInThree = 0
+        
+        firstInThree = dogs[0].number
+        // Here call lookUpTable
+        var lookUpPosition1 = lookUpTable(lookTableFor: firstInThree)
+        print("INDEX OF MAX \(lookUpPosition1)")
+        print("***********************************")
+        
+        for index in 1...3 { // compare with second, third and fourth position (first 4 dogs in array)
+            if lookUpPosition1 == dogs[index].number {
+                secondInThree = dogs[index].number
+            }
+        }
+        
+        if secondInThree == 0 {
+            //var lookUpPosition2 = lookUpTable(lookTableFor: <#T##Int#>)
+        }
+        
+        thirdInThree = lookUpTable(lookTableFor: secondInThree)
+        
+        if thirdInThree == firstInThree {
+          //  thirdInThree = kako naci vrednost niza koja je predzadnja po velicini, odmah pre max() vrednosti
+        }
+        
+        firstInThreeImage.image = UIImage(named: "\(firstInThree).jpg")
+        secondInThreeImage.image = UIImage(named: "\(secondInThree).jpg")
+        thirdInThreeImage.image = UIImage(named: "\(thirdInThree).jpg")
+        
+        print(firstInThree, secondInThree, thirdInThree)
+    }
+    
+    //MARK: - Look up Table method
+    
+    func lookUpTable(lookTableFor dogInThree : Int) -> Int {
 
+        var lookUpTable = [[0, 14, 26, 22, 20, 26], [14, 0, 14, 22, 25, 15], [26, 14, 0, 19, 23, 23], [22, 22, 19, 0, 22, 24], [20, 25, 23, 22, 0, 23], [26, 15, 23, 24, 23, 0]]
+
+        let positionIndex = dogInThree - 1
+        var lookUpPosition = (lookUpTable[positionIndex].index(of: lookUpTable[positionIndex].max()!) as! Int) + 1
+        
+        for posArray in lookUpTable {
+            //lookUpTable[posArray][lookUpPosition - 1] = 0
+            print(posArray[lookUpPosition - 1])
+        }
+        print("//////////////////////////")
+        print(lookUpTable)
+        return lookUpPosition
+        
+    }
+    
 }
