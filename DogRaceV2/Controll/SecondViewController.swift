@@ -19,6 +19,7 @@ class SecondViewController: UIViewController {
     let realm = try! Realm()
     var races : Results<Race>? = nil
     var inputOdds = [Float]()
+    var dogNumber = [["Pos. 1", "1", "2", "3", "4", "5", "6"], ["Pos. 2", "1", "2", "3", "4", "5", "6"], ["Pos. 3", "1", "2", "3", "4", "5", "6"]]
     let lookUpTable = [[0, 14, 26, 22, 20, 26], [14, 0, 14, 22, 25, 15], [26, 14, 0, 19, 23, 23], [22, 22, 19, 0, 22, 24], [20, 25, 23, 22, 0, 23], [26, 15, 23, 24, 23, 0]]
     
     //Labels outlets
@@ -28,73 +29,79 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var firstInThreeImage: UIImageView!
     @IBOutlet weak var secondInThreeImage: UIImageView!
     @IBOutlet weak var thirdInThreeImage: UIImageView!
+    //UIPicker for position
+    @IBOutlet weak var positionOnePicker: UIPickerView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Second")
         self.navigationItem.setHidesBackButton(true, animated: false)
         //self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(addTapped))
-        print("Aaaaaaaaaaa \(inputOdds)")
+        positionOnePicker.delegate = self
+        positionOnePicker.dataSource = self
+        
+        //print("Aaaaaaaaaaa \(inputOdds)")
         //print(Realm.Configuration.defaultConfiguration.fileURL)
         
         //MARK: - Test calculateCentroid and analys methods
         
-        let testRace1 = Race()
-        let testRace2 = Race()
-        
-        let dog1 = Dog()
-        let dog2 = Dog()
-        let dog3 = Dog()
-        let dog4 = Dog()
-        let dog5 = Dog()
-        let dog6 = Dog()
-        
-        
-        dog1.number = 1
-        dog1.odds = 4.8
-        dog1.position = 6
-        
-        dog2.number = 2
-        dog2.odds = 5.95
-        dog2.position = 5
-        
-        dog3.number = 3
-        dog3.odds = 5.55
-        dog3.position = 4
-        
-        dog4.number = 4
-        dog4.odds = 30.0
-        dog4.position = 3
-        
-        dog5.number = 5
-        dog5.odds = 8.8
-        dog5.position = 2
-        
-        dog6.number = 6
-        dog6.odds = 3.00
-        dog6.position = 1
-        
-        testRace1.id = 777
-        testRace1.dogs.append(dog1)
-        testRace1.dogs.append(dog2)
-        testRace1.dogs.append(dog3)
-        testRace1.dogs.append(dog4)
-        testRace1.dogs.append(dog5)
-        testRace1.dogs.append(dog6)
-        
-        testRace2.id = 999
-        testRace2.dogs.append(dog1)
-        testRace2.dogs.append(dog2)
-        testRace2.dogs.append(dog3)
-        testRace2.dogs.append(dog4)
-        testRace2.dogs.append(dog5)
-        testRace2.dogs.append(dog6)
-        
-        let racesArray = [testRace1,testRace2]
-        
-        let result = calculateCentroid(races: racesArray)
-        //print(result)
-        let analysed = analys(race: testRace1, inCentroid: result.0, outCentroid: result.1)
+//        let testRace1 = Race()
+//        let testRace2 = Race()
+//
+//        let dog1 = Dog()
+//        let dog2 = Dog()
+//        let dog3 = Dog()
+//        let dog4 = Dog()
+//        let dog5 = Dog()
+//        let dog6 = Dog()
+//
+//
+//        dog1.number = 1
+//        dog1.odds = 4.8
+//        dog1.position = 6
+//
+//        dog2.number = 2
+//        dog2.odds = 5.95
+//        dog2.position = 5
+//
+//        dog3.number = 3
+//        dog3.odds = 5.55
+//        dog3.position = 4
+//
+//        dog4.number = 4
+//        dog4.odds = 30.0
+//        dog4.position = 3
+//
+//        dog5.number = 5
+//        dog5.odds = 8.8
+//        dog5.position = 2
+//
+//        dog6.number = 6
+//        dog6.odds = 3.00
+//        dog6.position = 1
+//
+//        testRace1.id = 777
+//        testRace1.dogs.append(dog1)
+//        testRace1.dogs.append(dog2)
+//        testRace1.dogs.append(dog3)
+//        testRace1.dogs.append(dog4)
+//        testRace1.dogs.append(dog5)
+//        testRace1.dogs.append(dog6)
+//
+//        testRace2.id = 999
+//        testRace2.dogs.append(dog1)
+//        testRace2.dogs.append(dog2)
+//        testRace2.dogs.append(dog3)
+//        testRace2.dogs.append(dog4)
+//        testRace2.dogs.append(dog5)
+//        testRace2.dogs.append(dog6)
+//
+//        let racesArray = [testRace1,testRace2]
+//
+//        let result = calculateCentroid(races: racesArray)
+//        //print(result)
+//        let analysed = analys(race: testRace1, inCentroid: result.0, outCentroid: result.1)
         //print(analysed)
         
         ///////////////////////////////////////////////////
@@ -298,4 +305,73 @@ class SecondViewController: UIViewController {
 //
 //    }
     
+}
+
+//MARK: - Extension SeconViewController - UIPicker
+
+extension SecondViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    //MARK: - UIPicker methods
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 3
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return dogNumber[component].count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return dogNumber[component][row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 60
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        let myView = UIView(frame: CGRect(x: 0, y: 0, width: pickerView.bounds.width, height: 60))
+
+        let myImageView = UIImageView(frame: CGRect(x: 155, y: 5, width: 50, height: 50))
+        
+        if dogNumber[component][row] != "X" {
+            switch row {
+            case 1:
+                myImageView.image = UIImage(named:"1.jpg")
+            case 2:
+                myImageView.image = UIImage(named:"2.jpg")
+            case 3:
+                myImageView.image = UIImage(named:"3.jpg")
+            case 4:
+                myImageView.image = UIImage(named:"4.jpg")
+            case 5:
+                myImageView.image = UIImage(named:"5.jpg")
+            case 6:
+                myImageView.image = UIImage(named:"6.jpg")
+            default:
+                myImageView.image = nil
+            }
+        } else {
+            myImageView.image = nil
+        }
+        myView.addSubview(myImageView)
+        
+        return myView
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 0 {
+            dogNumber[1][row] = "X"
+            dogNumber[2][row] = "X"
+        } else if component == 1 {
+            dogNumber[0][row] = "X"
+            dogNumber[2][row] = "X"
+        } else if component == 2 {
+            dogNumber[0][row] = "X"
+            dogNumber[1][row] = "X"
+        } else {
+            print("Nothing happens.")
+        }
+        print(dogNumber[component][row])
+    }
 }

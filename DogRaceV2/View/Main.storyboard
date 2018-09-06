@@ -179,10 +179,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebV-0s-low">
+                                <rect key="frame" x="16" y="378" width="343" height="93"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="93" id="J3g-S9-UfQ"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="VCv-KS-7q8" firstAttribute="bottom" secondItem="cER-pH-hqJ" secondAttribute="bottom" constant="27" id="0ZU-VL-kFD"/>
+                            <constraint firstItem="ebV-0s-low" firstAttribute="top" secondItem="6xh-DC-4zc" secondAttribute="bottom" constant="138" id="2V2-lB-sN0"/>
                             <constraint firstItem="6xh-DC-4zc" firstAttribute="top" secondItem="VCv-KS-7q8" secondAttribute="top" constant="106" id="3R6-nD-auA"/>
                             <constraint firstItem="Skv-BT-ddk" firstAttribute="leading" secondItem="VCv-KS-7q8" secondAttribute="leading" constant="148" id="Dfw-01-rSm"/>
                             <constraint firstItem="VCv-KS-7q8" firstAttribute="bottom" secondItem="6xh-DC-4zc" secondAttribute="bottom" constant="427" id="G56-Jf-frb"/>
@@ -196,12 +203,17 @@
                             <constraint firstItem="VCv-KS-7q8" firstAttribute="trailing" secondItem="6xh-DC-4zc" secondAttribute="trailing" constant="69" id="eqf-si-R2q"/>
                             <constraint firstItem="6xh-DC-4zc" firstAttribute="leading" secondItem="VCv-KS-7q8" secondAttribute="leading" constant="68" id="hrs-Ts-pce"/>
                             <constraint firstItem="VCv-KS-7q8" firstAttribute="trailing" secondItem="cER-pH-hqJ" secondAttribute="trailing" constant="78" id="i1A-Ca-Zea"/>
+                            <constraint firstItem="cER-pH-hqJ" firstAttribute="top" secondItem="ebV-0s-low" secondAttribute="bottom" constant="116" id="jGI-Ti-exp"/>
+                            <constraint firstItem="cER-pH-hqJ" firstAttribute="top" secondItem="ebV-0s-low" secondAttribute="bottom" constant="116" id="jKq-aH-yR9"/>
                             <constraint firstItem="VCv-KS-7q8" firstAttribute="trailing" secondItem="6xh-DC-4zc" secondAttribute="trailing" constant="69" id="jem-Q6-2mS"/>
                             <constraint firstItem="6xh-DC-4zc" firstAttribute="top" secondItem="raz-kc-QoP" secondAttribute="bottom" constant="12.5" id="khr-nY-QIb"/>
+                            <constraint firstItem="ebV-0s-low" firstAttribute="top" secondItem="6xh-DC-4zc" secondAttribute="bottom" constant="138" id="nSw-YI-5A2"/>
                             <constraint firstItem="VCv-KS-7q8" firstAttribute="trailing" secondItem="Skv-BT-ddk" secondAttribute="trailing" constant="148.5" id="nfB-To-029"/>
                             <constraint firstItem="VCv-KS-7q8" firstAttribute="trailing" secondItem="cER-pH-hqJ" secondAttribute="trailing" constant="78" id="pu8-iZ-uYQ"/>
+                            <constraint firstItem="ebV-0s-low" firstAttribute="leading" secondItem="VCv-KS-7q8" secondAttribute="leading" constant="16" id="rDS-zZ-6CL"/>
                             <constraint firstItem="VCv-KS-7q8" firstAttribute="bottom" secondItem="cER-pH-hqJ" secondAttribute="bottom" constant="27" id="uhs-4C-WGV"/>
                             <constraint firstItem="Skv-BT-ddk" firstAttribute="top" secondItem="VCv-KS-7q8" secondAttribute="top" constant="39" id="vCO-1G-2RD"/>
+                            <constraint firstItem="VCv-KS-7q8" firstAttribute="trailing" secondItem="ebV-0s-low" secondAttribute="trailing" constant="16" id="y39-7S-GMK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VCv-KS-7q8"/>
                     </view>
@@ -209,6 +221,7 @@
                     <connections>
                         <outlet property="firstInThreeImage" destination="qQc-SD-d2d" id="lI4-jr-MEk"/>
                         <outlet property="noAdviceLabel" destination="raz-kc-QoP" id="ebn-sL-TAi"/>
+                        <outlet property="positionOnePicker" destination="ebV-0s-low" id="fyP-hv-kRr"/>
                         <outlet property="raceIdLabel" destination="Skv-BT-ddk" id="qq3-iG-oTq"/>
                         <outlet property="secondInThreeImage" destination="7Xg-H3-C0a" id="zB3-2r-FSY"/>
                         <outlet property="thirdInThreeImage" destination="EgA-sV-lhl" id="FUr-p8-A2L"/>
