@@ -8,20 +8,18 @@
 
 import UIKit
 
+
 class ViewController: UIViewController, CanRecive {
-
-
 
     
     @IBOutlet var inputOdds: [UITextField] = []
     var inputOddsFloat = [Float]()
     
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         print("First")
-            
+        self.navigationItem.setHidesBackButton(false, animated: false)
         
     }
     
@@ -61,6 +59,7 @@ class ViewController: UIViewController, CanRecive {
         }
     }
     
+    
     //MARK: - CanRecive protocol method, remove old data
     func enterNewRace() {
         
@@ -69,6 +68,7 @@ class ViewController: UIViewController, CanRecive {
         }
         
         inputOddsFloat = []
+        
     }
 }
 

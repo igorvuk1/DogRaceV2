@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8E877A14C4D28B3BB2869770 /* Pods_DogRaceV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99E727B459F83D037A393BC /* Pods_DogRaceV2.framework */; };
+		AF167E2F214AA9B3002AD755 /* StatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF167E2E214AA9B3002AD755 /* StatTableViewController.swift */; };
+		AF46C406214BDFB400835E88 /* CustomStatCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF46C404214BDFB400835E88 /* CustomStatCellTableViewCell.swift */; };
+		AF46C407214BDFB400835E88 /* CustomStatCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF46C405214BDFB400835E88 /* CustomStatCellTableViewCell.xib */; };
 		AFA0136F20FD1FF5009DFA9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA0136E20FD1FF5009DFA9F /* AppDelegate.swift */; };
 		AFA0137120FD1FF5009DFA9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA0137020FD1FF5009DFA9F /* ViewController.swift */; };
 		AFA0137620FD1FF9009DFA9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFA0137520FD1FF9009DFA9F /* Assets.xcassets */; };
@@ -21,6 +24,9 @@
 /* Begin PBXFileReference section */
 		50B6A531679B45434C3242F5 /* Pods-DogRaceV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogRaceV2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DogRaceV2/Pods-DogRaceV2.debug.xcconfig"; sourceTree = "<group>"; };
 		A99E727B459F83D037A393BC /* Pods_DogRaceV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DogRaceV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF167E2E214AA9B3002AD755 /* StatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatTableViewController.swift; sourceTree = "<group>"; };
+		AF46C404214BDFB400835E88 /* CustomStatCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStatCellTableViewCell.swift; sourceTree = "<group>"; };
+		AF46C405214BDFB400835E88 /* CustomStatCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomStatCellTableViewCell.xib; sourceTree = "<group>"; };
 		AFA0136B20FD1FF5009DFA9F /* DogRaceV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogRaceV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFA0136E20FD1FF5009DFA9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFA0137020FD1FF5009DFA9F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +69,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AF46C403214BDECF00835E88 /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				AF46C404214BDFB400835E88 /* CustomStatCellTableViewCell.swift */,
+				AF46C405214BDFB400835E88 /* CustomStatCellTableViewCell.xib */,
+			);
+			path = "Custom Cell";
+			sourceTree = "<group>";
+		};
 		AFA0136220FD1FF5009DFA9F = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +112,7 @@
 		AFA0138420FD2156009DFA9F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AF46C403214BDECF00835E88 /* Custom Cell */,
 				AFA0138020FD2089009DFA9F /* Main.storyboard */,
 				AFA0137720FD1FF9009DFA9F /* LaunchScreen.storyboard */,
 			);
@@ -108,6 +124,7 @@
 			children = (
 				AFA0137020FD1FF5009DFA9F /* ViewController.swift */,
 				AFD0E7F420FFC19800805E56 /* SecondViewController.swift */,
+				AF167E2E214AA9B3002AD755 /* StatTableViewController.swift */,
 			);
 			path = Controll;
 			sourceTree = "<group>";
@@ -183,6 +200,7 @@
 			files = (
 				AFA0137920FD1FF9009DFA9F /* LaunchScreen.storyboard in Resources */,
 				AFA0137620FD1FF9009DFA9F /* Assets.xcassets in Resources */,
+				AF46C407214BDFB400835E88 /* CustomStatCellTableViewCell.xib in Resources */,
 				AFA0138120FD2089009DFA9F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,11 +253,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF46C406214BDFB400835E88 /* CustomStatCellTableViewCell.swift in Sources */,
 				AFA0138A20FD2A7C009DFA9F /* Race.swift in Sources */,
 				AFA0137120FD1FF5009DFA9F /* ViewController.swift in Sources */,
 				AFA0136F20FD1FF5009DFA9F /* AppDelegate.swift in Sources */,
 				AFD0E7F520FFC19800805E56 /* SecondViewController.swift in Sources */,
 				AFA0138820FD223A009DFA9F /* Dog.swift in Sources */,
+				AF167E2F214AA9B3002AD755 /* StatTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

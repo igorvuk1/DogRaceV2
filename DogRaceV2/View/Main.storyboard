@@ -115,7 +115,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="4Nt-MB-h11"/>
+                    <navigationItem key="navigationItem" id="4Nt-MB-h11">
+                        <barButtonItem key="rightBarButtonItem" title="Stat" id="hSo-DC-hep">
+                            <connections>
+                                <segue destination="epY-7K-f0X" kind="show" identifier="statSegue" id="gin-WC-szm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outletCollection property="inputOdds" destination="x2p-ma-yAG" collectionClass="NSMutableArray" id="URq-38-KTv"/>
                         <outletCollection property="inputOdds" destination="s7R-I8-399" collectionClass="NSMutableArray" id="TAk-N8-L2u"/>
@@ -132,7 +138,7 @@
         <!--Assistention-->
         <scene sceneID="L7K-j4-uQn">
             <objects>
-                <viewController id="Eu4-Sx-MI9" customClass="SecondViewController" customModule="DogRaceV2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SecondVC" id="Eu4-Sx-MI9" customClass="SecondViewController" customModule="DogRaceV2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zbQ-I9-6jU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -229,7 +235,39 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gik-SP-gTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1212" y="132.68365817091455"/>
+            <point key="canvasLocation" x="1196" y="-403"/>
+        </scene>
+        <!--Stat Table View Controller-->
+        <scene sceneID="A6W-b6-WtG">
+            <objects>
+                <tableViewController storyboardIdentifier="ThirdVC" id="epY-7K-f0X" customClass="StatTableViewController" customModule="DogRaceV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="R7k-WF-MIP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="W4k-U6-ml3">
+                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W4k-U6-ml3" id="09v-1P-IPx">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="epY-7K-f0X" id="Ev4-pc-cXN"/>
+                            <outlet property="delegate" destination="epY-7K-f0X" id="HJ5-Lm-fPs"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="statTableView" destination="R7k-WF-MIP" id="8ge-EQ-qlm"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wCf-Xa-UEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1196" y="491"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8ih-o3-2gr">

@@ -13,13 +13,19 @@ protocol CanRecive {
     func enterNewRace()
 }
 
-class SecondViewController: UIViewController {
+//Define global variable for loading races from Realm !!!
+var globalRaces : Results<Race>? = nil
 
+class SecondViewController: UIViewController {
+    
     var delegate : CanRecive?
     let realm = try! Realm()
-    var races : Results<Race>? = nil
+    var races : Results<Race>? = nil // mozda obrisati ovaj proprty posto koristim globalRace
+    var currentRace : Race? = nil
     var inputOdds = [Float]()
-    var dogNumber = [["Pos. 1", "1", "2", "3", "4", "5", "6"], ["Pos. 2", "1", "2", "3", "4", "5", "6"], ["Pos. 3", "1", "2", "3", "4", "5", "6"]]
+    //var dogNumber = [["Pos. 1", "1", "2", "3", "4", "5", "6"], ["Pos. 2", "1", "2", "3", "4", "5", "6"], ["Pos. 3", "1", "2", "3", "4", "5", "6"]]
+    var dogNumber = [[0, 1, 2, 3, 4, 5, 6],[0, 1, 2, 3, 4, 5, 6],[0, 1, 2, 3, 4, 5, 6]]
+    var dogPositionDict : [Int : Int] = [:]
     let lookUpTable = [[0, 14, 26, 22, 20, 26], [14, 0, 14, 22, 25, 15], [26, 14, 0, 19, 23, 23], [22, 22, 19, 0, 22, 24], [20, 25, 23, 22, 0, 23], [26, 15, 23, 24, 23, 0]]
     
     //Labels outlets
@@ -105,9 +111,10 @@ class SecondViewController: UIViewController {
         //print(analysed)
         
         ///////////////////////////////////////////////////
-        let currentRace = createRace()
-        raceType(race: currentRace)
-        //load()
+        currentRace = createRace()
+        raceType(race: currentRace!)
+        globalRaces = load()
+        //print(globalRace)
         
     }
     
@@ -129,9 +136,11 @@ class SecondViewController: UIViewController {
     
     //LOAD Method
     
-    func load() {
-        races = realm.objects(Race.self)
-        print(races)
+    func load() -> Results<Race>? {
+        let races = realm.objects(Race.self)
+        //print("LOADEEEEEEEED")
+        //print(races)
+        return races
     }
     
     //DELETE Method
@@ -143,6 +152,15 @@ class SecondViewController: UIViewController {
             }
         } catch {
             print("Error during deleting real : \(error)")
+        }
+    }
+    
+    //DELETE ALL realm Method
+    
+    func deleteAll() {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.deleteAll()
         }
     }
     
@@ -164,7 +182,7 @@ class SecondViewController: UIViewController {
         }
         print(race.dogs)
         
-//        save(race: race)
+
         return race
     }
     
@@ -201,6 +219,9 @@ class SecondViewController: UIViewController {
     //MARK: - DONE Button Pressed
     
     @IBAction func donePressed(_ sender: UIButton) {
+        writeResult(for: currentRace!)
+        save(race: currentRace!)
+        //deleteAll()
         delegate?.enterNewRace()
         self.navigationController?.popToRootViewController(animated: true)
     }
@@ -305,6 +326,7 @@ class SecondViewController: UIViewController {
 //
 //    }
     
+    
 }
 
 //MARK: - Extension SeconViewController - UIPicker
@@ -320,21 +342,42 @@ extension SecondViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return dogNumber[component].count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return dogNumber[component][row]
-    }
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return dogNumber[component][row]
+//    }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 60
     }
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
-        let myView = UIView(frame: CGRect(x: 0, y: 0, width: pickerView.bounds.width, height: 60))
+    //Treba prvo da poziva didSelectRow
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //print("Acitve didSelectRow")
+        if component == 0 {
+            dogNumber[1][row] = 0
+            dogNumber[2][row] = 0
+        } else if component == 1 {
+            dogNumber[0][row] = 0
+            dogNumber[2][row] = 0
+        } else if component == 2 {
+            dogNumber[0][row] = 0
+            dogNumber[1][row] = 0
+        } else {
+            print("Nothing happens.")
+        }
+        //print(component)
+        //print(dogNumber[component][row])
+        dogPositionDict.updateValue(dogNumber[component][row], forKey: component)
+        //print(dogPositionDict)
+    }
 
+    //Drugo treba da poziva viewForRow
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        //print("Acitve viewForRow")
+        let myView = UIView(frame: CGRect(x: 0, y: 0, width: pickerView.bounds.width, height: 60))
+        
         let myImageView = UIImageView(frame: CGRect(x: 155, y: 5, width: 50, height: 50))
         
-        if dogNumber[component][row] != "X" {
+        if dogNumber[component][row] != 0 {
             switch row {
             case 1:
                 myImageView.image = UIImage(named:"1.jpg")
@@ -359,19 +402,22 @@ extension SecondViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return myView
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if component == 0 {
-            dogNumber[1][row] = "X"
-            dogNumber[2][row] = "X"
-        } else if component == 1 {
-            dogNumber[0][row] = "X"
-            dogNumber[2][row] = "X"
-        } else if component == 2 {
-            dogNumber[0][row] = "X"
-            dogNumber[1][row] = "X"
-        } else {
-            print("Nothing happens.")
+    func writeResult(for race : Race){
+        
+        for idx in 0...2 {
+            if let position = dogPositionDict[idx] {
+                for dog in race.dogs {
+                    if dog.number == position {
+                        dog.position = idx + 1
+                    }
+                }
+            }
+            
         }
-        print(dogNumber[component][row])
     }
+    
+    
 }
+
+
+
